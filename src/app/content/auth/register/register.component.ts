@@ -7,9 +7,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  form: any = {
+    firstName: null,
+    lastName: null,
+    emailAddress: null,
+    username: null,
+    password: null,
+    confirmPassword: null
+  }
+
+  isSignedUpFailed = false;
+  errorMessage = "";
+
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+    const {
+      firstName,
+      lastName,
+      emailAddress,
+      username,
+      password
+    } =this.form
+
+    this.authService.register(username, password, emailAddress, firstName + lastName)
+    .subscribe({
+      next: data => {
+        console.log(data);
+        this.isSignedUpFailed = false;
+        this.gotToHome();
+
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isSignedUpFailed = true;
+      }
+    })
+
+  }
+
+  gotToHome(): void {
+    this.router.navigate(['/login']);
   }
 
 }
