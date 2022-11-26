@@ -15,6 +15,9 @@ import { RegisterComponent } from './content/auth/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProvider } from './_helpers/auth.interceptor';
+import { AddComponent } from './content/movie/add/add.component';
+import { EditComponent } from './content/movie/edit/edit.component';
+import { ListComponent } from './content/movie/list/list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { authInterceptorProvider } from './_helpers/auth.interceptor';
     ProjectsComponent,
     ContactComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MovieAddComponent,
+    MovieEditComponent,
+    MovieListComponent
   ],
   imports: [
     BrowserModule,
